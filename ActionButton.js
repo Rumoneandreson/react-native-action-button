@@ -284,6 +284,7 @@ export default class ActionButton extends Component {
             anim={this.anim}
             {...this.props}
             {...ActionButton.props}
+            spacing={10}
             parentSize={this.props.size}
             btnColor={this.props.btnOutRange}
             onPress={() => {
