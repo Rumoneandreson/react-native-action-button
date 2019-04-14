@@ -16,6 +16,7 @@ import {
   touchableBackground,
   DEFAULT_ACTIVE_OPACITY
 } from "./shared";
+import Icon from "react-native-vector-icons/FontAwesome"
 
 export default class ActionButton extends Component {
   constructor(props) {
@@ -229,35 +230,21 @@ export default class ActionButton extends Component {
   }
 
   _renderButtonIcon() {
-    const { icon, renderIcon, btnOutRangeTxt, buttonTextStyle, buttonText } = this.props;
-    if (renderIcon) return renderIcon(this.state.active);
-    if (icon) {
-      console.warn('react-native-action-button: The `icon` prop is deprecated! Use `renderIcon` instead.');
-      return icon;
-    }
+    // const { icon, renderIcon, btnOutRangeTxt, buttonTextStyle, buttonText } = this.props;
+    // if (renderIcon) return renderIcon(this.state.active);
+    // if (icon) {
+    //   console.warn('react-native-action-button: The `icon` prop is deprecated! Use `renderIcon` instead.');
+    //   return icon;
+    // }
 
-    const textColor = buttonTextStyle.color || "rgba(255,255,255,1)";
+    // const textColor = buttonTextStyle.color || "rgba(255,255,255,1)";
+    const {iconName} = this.props;
 
-    return (
-      <Animated.Text
-        style={[
-          styles.btnText,
-          buttonTextStyle,
-          {
-            color: this.anim.interpolate({
-              inputRange: [0, 1],
-              outputRange: [textColor, btnOutRangeTxt || textColor]
-            })
-          }
-        ]}
-      >
-        {buttonText}
-      </Animated.Text>
-    );
+    return (<Icon name="share" size={iconName} color="#900" />);
   }
 
   _renderActions() {
-    const { children, verticalOrientation } = this.props;
+    const { children, verticalOrientation, space } = this.props;
 
     if (!this.state.active) return null;
 
@@ -284,7 +271,7 @@ export default class ActionButton extends Component {
             anim={this.anim}
             {...this.props}
             {...ActionButton.props}
-            spacing={10}
+            spacing={space}
             parentSize={this.props.size}
             btnColor={this.props.btnOutRange}
             onPress={() => {
