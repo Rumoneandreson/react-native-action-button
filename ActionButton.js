@@ -238,9 +238,9 @@ export default class ActionButton extends Component {
     // }
 
     // const textColor = buttonTextStyle.color || "rgba(255,255,255,1)";
-    const {iconName} = this.props;
+    const {iconName, iconSize, iconColor} = this.props;
 
-    return (<Icon name="share" size={iconName} color="#900" />);
+    return (<Icon name={iconName} size={iconSize} color={iconColor} />);
   }
 
   _renderActions() {
